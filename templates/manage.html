@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>🛠 編集・削除ページ</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; margin: 30px; background: #fffafc; }
+    h1 { text-align: center; color: #e91e63; }
+    table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+    th, td { border: 1px solid #ccc; padding: 8px 12px; text-align: center; }
+    th { background: #ffe6f0; }
+    .btn { background: #e91e63; color: white; padding: 5px 10px; text-decoration: none; border-radius: 4px; margin-right: 5px; }
+    .btn:hover { background: #d81b60; }
+  </style>
+</head>
+<body>
+
+<h1>🛠 編集・削除ページ</h1>
+<p><a href="/" class="btn">🏠 戻る</a></p>
+
+<table>
+  <tr><th>ID</th><th>推し</th><th>カテゴリ</th><th>出金</th><th>入金</th><th>日付</th><th>操作</th></tr>
+  {% for r in records %}
+  <tr>
+    <td>{{ r.id }}</td>
+    <td>{{ r.oshi_name }}</td>
+    <td>{{ r.category }}</td>
+    <td>{{ r.expense }}</td>
+    <td>{{ r.income }}</td>
+    <td>{{ r.date }}</td>
+    <td>
+      <a href="/edit/{{ r.id }}" class="btn">編集</a>
+      <a href="/delete/{{ r.id }}" class="btn" onclick="return confirm('削除しますか？')">削除</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+
+</body>
+</html>

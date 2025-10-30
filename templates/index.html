@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>💖 推し活家計簿 💖</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; margin: 30px; background: #fffafc; }
+    h1 { text-align: center; color: #e91e63; }
+    table { border-collapse: collapse; width: 100%; margin-bottom: 40px; }
+    th, td { border: 1px solid #ccc; padding: 8px 12px; text-align: center; }
+    th { background: #ffe6f0; }
+    .box { border: 2px solid #e91e63; background: #fff0f6; padding: 15px; margin: 20px 0; border-radius: 8px; }
+    .oshi-title { background: #fce4ec; padding: 10px; font-weight: bold; border-left: 5px solid #e91e63; margin-top: 30px; }
+    .btn { background: #e91e63; color: white; padding: 5px 10px; text-decoration: none; border-radius: 4px; margin-right: 10px; }
+    .btn:hover { background: #d81b60; }
+  </style>
+</head>
+<body>
+
+<h1>💖 推し活家計簿 💖</h1>
+<p>
+  <a href="/add" class="btn">＋ 新しい記録を追加</a>
+  <a href="/manage" class="btn">🛠 編集・削除ページへ</a>
+</p>
+
+<!-- 全体合計 -->
+<div class="box">
+  <h2>全体の合計</h2>
+  <p>出金：{{ total.total_expense or 0 }} 円　
+     入金：{{ total.total_income or 0 }} 円　
+     残高：{{ total.balance or 0 }} 円</p>
+</div>
+
+<!-- 月ごとの合計 -->
+<div class="box">
+  <h2>月ごとの合計</h2>
+  <table>
+    <tr><th>月</th><th>出金</th><th>入金</th><th>差額</th></tr>
+    {% for m in monthly %}
+    <tr>
+      <td>{{ m.month }}</td>
+      <td>{{ m.total_expense or 0 }}</td>
+      <td>{{ m.total_income or 0 }}</td>
+      <td>{{ m.balance or 0 }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+
+<!-- 推しごとの一覧 -->
+{% for oshi, rows in data_by_oshi.items() %}
+  <div class="oshi-title">{{ oshi }} の記録</div>
+  <table>
+    <tr><th>日付</th><th>カテゴリ</th><th>出金</th><th>入金</th><th>メモ</th></tr>
+    {% for r in rows %}
+    <tr>
+      <td>{{ r.date }}</td>
+      <td>{{ r.category }}</td>
+      <td>{{ r.expense }}</td>
+      <td>{{ r.income }}</td>
+      <td>{{ r.memo }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endfor %}
+<p style="text-align: center; margin-top: 40px;">
+  <a href="/home" class="btn">🏠 トップページに戻る</a>
+</p>
+
+
+</body>
+</html>
+

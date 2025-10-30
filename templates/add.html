@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>新しい推し活記録を追加</title>
+  <style>
+    body {
+      font-family: "Hiragino Maru Gothic Pro", "Yu Gothic", sans-serif;
+      background-color: #fff5fa;
+      text-align: center;
+      padding: 40px;
+    }
+
+    h1 {
+      color: #e85d9f;
+      margin-bottom: 30px;
+    }
+
+    form {
+      background-color: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(232, 93, 159, 0.3);
+      display: inline-block;
+      padding: 30px 40px;
+      text-align: left;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+      color: #e85d9f;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      border: 2px solid #ffcce0;
+      border-radius: 10px;
+      margin-top: 5px;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #e85d9f;
+      color: white;
+      border: none;
+      border-radius: 15px;
+      padding: 10px 30px;
+      margin-top: 25px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      background-color: #f38dbf;
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 20px;
+      color: #e85d9f;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>💖 新しい推し活記録 💖</h1>
+
+  <form action="/add" method="POST">
+    <label>推しの名前</label>
+    <input type="text" name="oshi_name" required>
+
+    <label>カテゴリ</label>
+    <select name="category" required>
+      <option value="">選択してください</option>
+      <option value="グッズ">グッズ</option>
+      <option value="チケット">チケット</option>
+      <option value="カフェ">カフェ</option>
+      <option value="イベント">イベント</option>
+      <option value="その他">その他</option>
+    </select>
+
+    <label>出金（円）</label>
+    <input type="number" name="expense" value="0">
+
+    <label>入金（円）</label>
+    <input type="number" name="income" value="0">
+
+    <label>メモ</label>
+    <textarea name="memo" rows="3" placeholder="例：〇〇のアクスタ購入など"></textarea>
+
+    <label>日付</label>
+    <input type="date" name="date" required>
+
+    <button type="submit">登録する 💎</button>
+  </form>
+
+  <br>
+  <a href="/">🏠 一覧に戻る</a>
+</body>
+</html>
+
